@@ -8,9 +8,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
   const isLoggedIn = false; // This will be managed by auth state later
+  const navigate = useNavigate();
 
   return (
     <header className="border-b bg-card shadow-sm">
@@ -37,7 +39,10 @@ export const Header = () => {
           <DropdownMenuContent className="w-56 bg-popover border shadow-lg" align="end">
             {isLoggedIn ? (
               <>
-                <DropdownMenuItem className="cursor-pointer">
+                <DropdownMenuItem 
+                  className="cursor-pointer"
+                  onClick={() => navigate('/manage-tasks')}
+                >
                   <Settings className="mr-2 h-4 w-4" />
                   Manage Tasks
                 </DropdownMenuItem>
@@ -48,7 +53,10 @@ export const Header = () => {
                 </DropdownMenuItem>
               </>
             ) : (
-              <DropdownMenuItem className="cursor-pointer">
+              <DropdownMenuItem 
+                className="cursor-pointer"
+                onClick={() => navigate('/login')}
+              >
                 <LogIn className="mr-2 h-4 w-4" />
                 Login
               </DropdownMenuItem>
